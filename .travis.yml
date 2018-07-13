@@ -1,9 +1,10 @@
-sudo: required
+sudo: false
 language: python
 addons: # get google-chrome-stable
-  chrome: stable
+  # chrome: stable
   apt:
     packages:
+      - google-chrome-stable
       - chromium-chromedriver
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
@@ -19,4 +20,4 @@ install:
   - pip install -r requirements.txt
 script:
   - python manage.py test quotes
-  - python manage.py runserver & python manage.py test
+  - python manage.py runserver & python manage.py test functional_tests
