@@ -16,4 +16,5 @@ install:
   - pip install -r requirements.txt
 script:
   - python manage.py test quotes
-  - PATH=$PATH:/usr/local/share/chromedriver ; python manage.py runserver & python manage.py test
+  - whereis chromedriver
+  # - PATH=$PATH:/usr/local/share/chromedriver ; python manage.py runserver & python manage.py test
