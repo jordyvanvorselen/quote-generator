@@ -1,8 +1,10 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
-import unittest
+from selenium.webdriver.common.keys import Keys
+import time
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome()
@@ -13,7 +15,7 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_see_a_quote(self):
         # Elise has heard about a cool new online quote generation app. She goes
         # to check out its homepage
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # She notices the page title and header mention quote generation
         self.assertIn('Quote Generation', self.browser.title)
@@ -26,7 +28,3 @@ class NewVisitorTest(unittest.TestCase):
         # When she refreshes the page, the page now shows another quote
 
         # Satisfied, she goes back to sleep
-
-
-if __name__ == '__main__':
-    unittest.main()
