@@ -17,9 +17,11 @@ class NewVisitorTest(unittest.TestCase):
 
         # She notices the page title and header mention quote generation
         self.assertIn('Quote Generation', self.browser.title)
-        self.fail('Finish the test!')
 
         # A quote is shown to her straight away
+        quote_text = self.browser.find_element_by_id('Quote')
+        self.assertNotEqual(quote_text, None)
+        self.fail('Finish the test!')
 
         # When she refreshes the page, the page now shows another quote
 
