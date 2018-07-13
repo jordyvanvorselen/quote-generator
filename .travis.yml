@@ -2,6 +2,11 @@ sudo: required
 language: python
 addons: # get google-chrome-stable
   chrome: stable
+  apt:
+    packages:
+      - chromium-chromedriver
+before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 install: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
   - wget http://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.6/bin/
