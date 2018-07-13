@@ -28,7 +28,7 @@ class NewVisitorTest(LiveServerTestCase):
         # A quote is shown to her straight away
         quote_text = self.browser.find_element_by_id('Quote').text
         self.assertNotEqual(quote_text, '')
-        self.fail('Finish the test!')
+        # self.fail('Finish the test!')
 
         # When she refreshes the page, the page now shows another quote
 
