@@ -7,7 +7,8 @@ import time
 class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
-        self.browser = webdriver.Chrome()
+        self.browser = webdriver.Chrome(
+            executable_path=r'/usr/local/bin/chromedriver')
 
     def tearDown(self):
         self.browser.quit()
