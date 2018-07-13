@@ -5,7 +5,7 @@ install: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
   - wget -N http://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/bin
+  - sudo mv -f ~/chromedriver /usr/local/share/
   - sudo chmod a+x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
 python:
@@ -16,4 +16,4 @@ install:
   - pip install -r requirements.txt
 script:
   - python manage.py test quotes
-  - PATH=$PATH:/usr/bin/chromedriver ; python manage.py runserver & python manage.py test
+  - PATH=$PATH:/usr/local/share/chromedriver ; python manage.py runserver & python manage.py test
