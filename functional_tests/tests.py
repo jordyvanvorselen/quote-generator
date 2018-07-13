@@ -8,7 +8,7 @@ class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome(
-            executable_path=r'/usr/local/bin/chromedriver')
+            executable_path=r'/usr/local/share/chromedriver')
 
     def tearDown(self):
         self.browser.quit()
