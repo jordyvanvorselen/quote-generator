@@ -102,3 +102,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+db.sqlite3
+geckodriver.log
+virtualenv
+__pycache__
+*.pyc
