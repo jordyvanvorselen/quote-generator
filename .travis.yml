@@ -21,3 +21,10 @@ install:
 script:
   - python manage.py test quotes
   - python manage.py runserver & python manage.py test functional_tests
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  on:
+    branch: master
