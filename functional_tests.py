@@ -19,8 +19,8 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('Quote Generation', self.browser.title)
 
         # A quote is shown to her straight away
-        quote_text = self.browser.find_element_by_id('Quote')
-        self.assertNotEqual(quote_text, None)
+        quote_text = self.browser.find_element_by_id('Quote').text
+        self.assertNotEqual(quote_text, '')
         self.fail('Finish the test!')
 
         # When she refreshes the page, the page now shows another quote
