@@ -1,11 +1,11 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import time
 
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         chrome_options = Options()
@@ -28,8 +28,10 @@ class NewVisitorTest(LiveServerTestCase):
         # A quote is shown to her straight away
         quote_text = self.browser.find_element_by_id('Quote').text
         self.assertNotEqual(quote_text, '')
-        # self.fail('Finish the test!')
 
         # When she refreshes the page, the page now shows another quote
+        self.browser.refresh()
+        new_quote_text = self.browser.find_element_by_id('Quote').text
+        self.assertNotEqual(new_quote_text, quote_text)
 
         # Satisfied, she goes back to sleep

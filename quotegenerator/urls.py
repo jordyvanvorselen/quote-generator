@@ -18,5 +18,6 @@ from django.urls import re_path
 from quotes import views
 
 urlpatterns = [
+    re_path('admin/', admin.site.urls),
     re_path(r'^$', views.home_page, name='home'),
 ]

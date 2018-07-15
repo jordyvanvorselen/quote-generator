@@ -1,5 +1,6 @@
 from django.test import TestCase
 from quotes.models import Quote
+from bs4 import BeautifulSoup
 
 
 class HomePageTest(TestCase):
@@ -28,3 +29,14 @@ class QuoteModelTest(TestCase):
         self.assertEqual(first_saved_item.text, 'This is a very good quote')
         self.assertEqual(second_saved_item.text,
                          'This is also a very good quote...')
+
+    def test_quote_should_not_be_the_same_as_previous_quote(self):
+        previous_quote = ''
+        for i in range(10):
+            current_quote_soup = BeautifulSoup(
+                self.client.get('/').content, "html.parser")
+            current_quote = current_quote_soup.find(id='Quote').string
+            if (i > 0):
+                self.assertNotEqual(previous_quote, current_quote)
+                self.assertNotEqual(current_quote, None)
+            previous_quote = current_quote
