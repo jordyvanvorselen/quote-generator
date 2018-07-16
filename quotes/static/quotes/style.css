@@ -14,27 +14,33 @@ body {
 }
 
 .background {
-    background-image: url("./background.png");
-    height: 100vh;
+    background-image: url("./ghandi-background.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100%;
     position: fixed;
 }
 
-.center {
-    height: 100%;
-    width: 100%;
-    line-height: 80vh;
-    text-align: center;
+.ow {
+    display: inline-block;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    max-width: 40%;
+    padding: 10%;
 }
 
 #Quote {
-    color: #6B99A5;
-    font-size: 40px;
+    color: white;
+    font-size: 30px;
     font-weight: normal;
-    font-family: 'IM Fell English', serif;
-    width: 50%;
-    margin: auto;
-    word-break: break-all;
+    font-family: 'Bad Script', cursive;
+}
+
+#Author {
+    color: white;
+    font-size: 15px;
+    font-weight: normal;
+    font-family: 'Cabin', sans-serif;
 }

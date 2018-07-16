@@ -16,7 +16,7 @@ class QuoteModelTest(TestCase):
 
     def test_quote_should_change_upon_refresh(self):
         all_quotes = []
-        for _ in range(5):
+        for _ in range(2):
             current_quote_soup = BeautifulSoup(
                 self.client.get('/').content, "html.parser")
             quote = current_quote_soup.find(id='Quote').string

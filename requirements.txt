@@ -11,5 +11,4 @@ pylint==1.9.2
 pytz==2018.5
 selenium==3.13.0
 six==1.11.0
-wikiquote==0.1.7
 wrapt==1.10.11

@@ -1,15 +1,17 @@
 from django.shortcuts import render, render_to_response
-import wikiquote
 import random
+import requests
 
 # Create your views here.
 
 
 def home_page(request):
-    quote = random.choice(wikiquote.quotes(
-        page_title='Marcus Aurelius', lang='en'))
+    response = requests.get('https://talaikis.com/api/quotes/random/')
+    response_content = response.json()
+    quote = response_content["quote"]
+    author = response_content["author"]
     response = render_to_response('home.html', {
         'random_quote': quote,
-        'author': 'Marcus Aurelius'
+        'author': author
     })
     return response
