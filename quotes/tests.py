@@ -13,21 +13,15 @@ class HomePageTest(TestCase):
 
 class QuoteModelTest(TestCase):
 
-    def all_items_in_list_are_equal(self, list):
-        return all(x == list[0] for x in list)
+    def get_quote_from_response(self, response):
+        return BeautifulSoup(response.content, "html.parser").find(id='Quote').string
 
     def test_home_page_view_should_return_different_quote_each_refresh(self):
-        first_quote = BeautifulSoup(
-            home_page(request).content, "html.parser").find(id='Quote').string
-        second_quote = BeautifulSoup(
-            home_page(request).content, "html.parser").find(id='Quote').string
+        first_quote = self.get_quote_from_response(home_page(request))
+        second_quote = self.get_quote_from_response(home_page(request))
         self.assertNotEqual(first_quote, second_quote)
 
     def test_quote_on_home_page_should_change_upon_refresh(self):
-        first_quote_soup = BeautifulSoup(
-            self.client.get('/').content, "html.parser")
-        first_quote = first_quote_soup.find(id='Quote').string
-        second_quote_soup = BeautifulSoup(
-            self.client.get('/').content, "html.parser")
-        second_quote = second_quote_soup.find(id='Quote').string
+        first_quote = self.get_quote_from_response(self.client.get('/'))
+        second_quote = self.get_quote_from_response(self.client.get('/'))
         self.assertNotEqual(first_quote, second_quote)
