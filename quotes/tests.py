@@ -15,10 +15,10 @@ class QuoteModelTest(TestCase):
         return all(x == list[0] for x in list)
 
     def test_quote_should_change_upon_refresh(self):
-        all_quotes = []
-        for _ in range(2):
-            current_quote_soup = BeautifulSoup(
-                self.client.get('/').content, "html.parser")
-            quote = current_quote_soup.find(id='Quote').string
-            all_quotes.append(quote)
-        self.assertFalse(self.all_items_in_list_are_equal(all_quotes))
+        first_quote_soup = BeautifulSoup(
+            self.client.get('/').content, "html.parser")
+        first_quote = first_quote_soup.find(id='Quote').string
+        second_quote_soup = BeautifulSoup(
+            self.client.get('/').content, "html.parser")
+        second_quote = second_quote_soup.find(id='Quote').string
+        self.assertNotEqual(first_quote, second_quote)
