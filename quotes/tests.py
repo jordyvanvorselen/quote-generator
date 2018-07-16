@@ -10,9 +10,6 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
 
-
-class QuoteModelTest(TestCase):
-
     def get_quote_from_response(self, response):
         return BeautifulSoup(response.content, "html.parser").find(id='Quote').string
 
