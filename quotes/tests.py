@@ -1,5 +1,4 @@
 from django.test import TestCase
-from quotes.models import Quote
 from bs4 import BeautifulSoup
 
 
@@ -12,31 +11,14 @@ class HomePageTest(TestCase):
 
 class QuoteModelTest(TestCase):
 
-    def test_save_and_retrieve_quotes(self):
-        first_quote = Quote()
-        first_quote.text = 'This is a very good quote'
-        first_quote.save()
+    def all_items_in_list_are_equal(self, list):
+        return all(x == list[0] for x in list)
 
-        second_quote = Quote()
-        second_quote.text = 'This is also a very good quote...'
-        second_quote.save()
-
-        saved_items = Quote.objects.all()
-        self.assertEqual(saved_items.count(), 2)
-
-        first_saved_item = saved_items[0]
-        second_saved_item = saved_items[1]
-        self.assertEqual(first_saved_item.text, 'This is a very good quote')
-        self.assertEqual(second_saved_item.text,
-                         'This is also a very good quote...')
-
-    def test_quote_should_not_be_the_same_as_previous_quote(self):
-        previous_quote = ''
-        for i in range(10):
+    def test_quote_should_change_upon_refresh(self):
+        all_quotes = []
+        for _ in range(5):
             current_quote_soup = BeautifulSoup(
                 self.client.get('/').content, "html.parser")
-            current_quote = current_quote_soup.find(id='Quote').string
-            if (i > 0):
-                self.assertNotEqual(previous_quote, current_quote)
-                self.assertNotEqual(current_quote, None)
-            previous_quote = current_quote
+            quote = current_quote_soup.find(id='Quote').string
+            all_quotes.append(quote)
+        self.assertFalse(self.all_items_in_list_are_equal(all_quotes))

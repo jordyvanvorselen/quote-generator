@@ -31,7 +31,10 @@ body {
 
 #Quote {
     color: #6B99A5;
-    font-size: 25px;
+    font-size: 40px;
     font-weight: normal;
-    font-family: 'Bad Script', cursive;
+    font-family: 'IM Fell English', serif;
+    width: 50%;
+    margin: auto;
+    word-break: break-all;
 }
